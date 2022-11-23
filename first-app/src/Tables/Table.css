@@ -1,0 +1,27 @@
+.Tables {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+table {
+    border: 2px solid black;
+    width: 100%;
+    height: 80px;
+}
+
+thead {
+    background-color: coral;
+}
+
+tbody {
+    background-color: azure;
+}
+
+th {
+}
+
+td {
+    text-align: center;
+}
