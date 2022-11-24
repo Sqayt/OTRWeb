@@ -1,0 +1,7 @@
+.TabPanel {
+    display: flex;
+}
+
+TabList {
+    text-align: left;
+}

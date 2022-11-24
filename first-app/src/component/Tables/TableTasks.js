@@ -1,37 +1,37 @@
 import './Table.css'
-import People from "../Data/People";
+import Tasks from "../../Data/Task";
 
-function TablePeople() {
-    const people = People()
+function TableTasks() {
+
+    const tasks = Tasks()
+
     return (
         <div className={'Tables'}>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>ФИО</th>
-                        <th>Руководитель</th>
-                        <th>Филиал</th>
-                        <th>Количество задач</th>
+                        <th>Название</th>
+                        <th>Исполнитель</th>
+                        <th>Приоритет</th>
                     </tr>
                 </thead>
-                {people.map((val, key) => {
+                {tasks.map((val, key) => {
                     return (
                         <tbody key={key}>
                             <tr>
                                 <td>{val.id}</td>
-                                <td>{val.name} {val.surName} {val.middleName}</td>
+                                <td>{val.description}</td>
                                 <td></td>
-                                <td>{val.branchName}</td>
-                                <td></td>
+                                <td>{val.priority}</td>
                             </tr>
                         </tbody>
                     )
+                })
                 }
-                )}
             </table>
         </div>
     )
 }
 
-export default TablePeople
+export default TableTasks

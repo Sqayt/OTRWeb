@@ -1,18 +1,13 @@
 import './App.css';
-import Header from "./Header/Header";
-import ButtonAddPerson from "./Buttons/ButtonAddPerson";
-// import MyTabs from "./Tabs/Tabs";
-import TablePeople from "./Tables/TablePeople";
-import TableTasks from "./Tables/TableTasks";
+import Header from "./component/Header/Header";
+import ButtonAddPerson from "./component/Buttons/ButtonAddPerson";
+import MyTabs from "./component/Tabs/Tabs";
 
 function App() {
   return (
       <div className={'App'}>
         <Header />
-        <ButtonAddPerson />
-        {/*<MyTabs />*/}
-        <TablePeople />
-        <TableTasks />
+        <MyTabs />
       </div>
   );
 }
