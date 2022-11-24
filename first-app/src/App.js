@@ -4,6 +4,7 @@ import ButtonAddPerson from "./Buttons/ButtonAddPerson";
 // import MyTabs from "./Tabs/Tabs";
 import TablePeople from "./Tables/TablePeople";
 import TableTasks from "./Tables/TableTasks";
+import Body from "./Body/Body";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         {/*<MyTabs />*/}
         <TablePeople />
         <TableTasks />
+        <Body />
       </div>
   );
 }
