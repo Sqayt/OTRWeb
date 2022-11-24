@@ -23,7 +23,7 @@ function TablePeople() {
                                 <td>{val.name} {val.surName} {val.middleName}</td>
                                 <td></td>
                                 <td>{val.branchName}</td>
-                                <td></td>
+                                <td>{val.tasks.length}</td>
                             </tr>
                         </tbody>
                     )

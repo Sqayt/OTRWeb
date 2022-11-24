@@ -22,7 +22,7 @@ function TableTasks() {
                             <tr>
                                 <td>{val.id}</td>
                                 <td>{val.description}</td>
-                                <td></td>
+                                <td>{val.fullNamePerson}</td>
                                 <td>{val.priority}</td>
                             </tr>
                         </tbody>
