@@ -2,6 +2,23 @@
     display: flex;
 }
 
-TabList {
+.mainTabs {
     text-align: left;
+}
+
+.tabHead {
+    display: flex;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 0.5rem 0.75rem;
+
+}
+
+.btn {
+    margin-left: 12px;
+}
+
+.myTab {
+    border: 1px solid #ccc;
+    padding: 10px;
 }

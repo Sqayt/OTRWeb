@@ -13,6 +13,7 @@ function People() {
             .then(resp => {
                 setPeople(resp.data);
             })
+            .catch(txt => console.log(txt))
     }, []);
 
     return people

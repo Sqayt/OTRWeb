@@ -13,6 +13,7 @@ function Tasks() {
             .then(resp => {
                 setTasks(resp.data)
             })
+            .catch(txt => console.log(txt))
     }, []);
 
     return tasks

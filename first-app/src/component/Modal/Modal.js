@@ -1,5 +1,6 @@
 import './Modal.css'
 import {useCallback, useEffect} from "react";
+import Body from "../Body/Body";
 
 export default (props) => {
     if (!props.show) {
@@ -28,6 +29,7 @@ export default (props) => {
                 </div>
                 <div className={'modal-body'}>
                     {props.children}
+                    <Body />
                 </div>
                 <div className={'modal-footer'}>
                     <button onClick={props.onClose} className={'btn'}>Close</button>

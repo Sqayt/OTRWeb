@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import './Tabs.css'
 import TablePeople from "../Tables/TablePeople";
@@ -13,22 +13,28 @@ function MyTabs() {
     const buttonAddTask = ButtonAddTask()
     const buttonAddPerson = ButtonAddPerson()
 
-    return (
-        <Tabs style={{textAlign: "left"}}>
-            <TabList>
-                <Tab>Title 1</Tab>
-                <Tab>Title 2</Tab>
-            </TabList>
+    const [index, setIndex] = useState(0)
 
-            <TabPanel>
-                {buttonAddPerson}
-                {tablePeople}
-            </TabPanel>
-            <TabPanel>
-                {buttonAddTask}
-                {tableTasks}
-            </TabPanel>
-        </Tabs>
+    return (
+        <div>
+            <Tabs className={'mainTabs'}>
+                <div style={{display: "flex"}}>
+                    <TabList className={'tabHead'}>
+                        <Tab className={'myTab'}>Сотрудники</Tab>
+                        <Tab className={'myTab'}>Задачи</Tab>
+                    </TabList>
+
+                    {buttonAddTask}
+                </div>
+
+                <TabPanel>
+                    {tablePeople}
+                </TabPanel>
+                <TabPanel>
+                    {tableTasks}
+                </TabPanel>
+            </Tabs>
+        </div>
     )
 }
 
