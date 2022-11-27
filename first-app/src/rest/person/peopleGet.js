@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 
 const apiUrl = 'http://localhost:8081/task/api/v1/persons'
 
-function People() {
+function PeopleGet() {
 
     const [people, setPeople] = useState([]);
 
@@ -13,10 +13,13 @@ function People() {
             .then(resp => {
                 setPeople(resp.data);
             })
-            .catch(txt => console.log(txt))
+            .catch(txt => {
+                console.log(txt);
+                setPeople([]);
+            })
     }, []);
 
-    return people
+    return people;
 }
 
-export default People
+export default PeopleGet

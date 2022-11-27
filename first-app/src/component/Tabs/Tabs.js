@@ -18,13 +18,19 @@ function MyTabs() {
     return (
         <div>
             <Tabs className={'mainTabs'}>
-                <div style={{display: "flex"}}>
+                <div className={'tabHead'}>
                     <TabList className={'tabHead'}>
-                        <Tab className={'myTab'}>Сотрудники</Tab>
-                        <Tab className={'myTab'}>Задачи</Tab>
+                        <Tab className={'myTab'} onClick={() => setIndex(0)}>Сотрудники</Tab>
+                        <Tab className={'myTab'} onClick={() => setIndex(1)}>Задачи</Tab>
                     </TabList>
 
-                    {buttonAddTask}
+                    <div className={'btnPositionBlock'} hidden={index === 1}>
+                        {buttonAddPerson}
+                    </div>
+
+                    <div className={'btnPositionBlock'} hidden={index === 0}>
+                        {buttonAddTask}
+                    </div>
                 </div>
 
                 <TabPanel>

@@ -11,12 +11,15 @@ function Tasks() {
         axios
             .get(apiUrl)
             .then(resp => {
-                setTasks(resp.data)
+                setTasks(resp.data);
             })
-            .catch(txt => console.log(txt))
+            .catch(txt => {
+                console.log(txt);
+                setTasks([]);
+            })
     }, []);
 
-    return tasks
+    return tasks;
 }
 
 export default Tasks

@@ -5,8 +5,8 @@ import MyTabs from "./component/Tabs/Tabs";
 function App() {
   return (
       <div className={'App'}>
-        <Header />
-        <MyTabs />
+          <Header />
+          <MyTabs />
       </div>
   );
 }

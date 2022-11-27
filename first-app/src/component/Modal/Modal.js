@@ -1,8 +1,19 @@
 import './Modal.css'
 import {useCallback, useEffect} from "react";
-import Body from "../Body/Body";
+import {useDispatch} from "react-redux";
+import {addPerson} from "../../redux/store/todoSlice";
 
 export default (props) => {
+    const dispatch = useDispatch();
+
+    const addTask = () => dispatch(addPerson({
+        id: "1",
+        surName: "",
+        name: "",
+        middleName: "",
+        branchName: ""
+    }))
+
     if (!props.show) {
         return null
     }
@@ -28,11 +39,18 @@ export default (props) => {
                     <h4 className={'modal-title'}>{props.title}</h4>
                 </div>
                 <div className={'modal-body'}>
-                    {props.children}
-                    <Body />
+                    {props.body}
                 </div>
-                <div className={'modal-footer'}>
-                    <button onClick={props.onClose} className={'btn'}>Close</button>
+                <div className={'modal-footer'} style={{display:"flex"}}>
+                    <button onClick={props.onClose} className={'btn'}>Отмена</button>
+                    <div style={{marginLeft: "auto"}}>
+                        { props.btnType === 'update' &&
+                            <button onClick={props.onClose} className={'btn'}>
+                                Удалить
+                            </button>
+                        }
+                        <button onClick={props.onClose} className={'btn'} style={{marginLeft:"20px"}}>Сохранить</button>
+                    </div>
                 </div>
             </div>
         </div>

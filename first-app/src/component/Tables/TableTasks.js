@@ -1,9 +1,13 @@
 import './Table.css'
-import Tasks from "../../Data/Task";
+import Tasks from "../../rest/task/tasksGet";
+import {useState} from "react";
+import ModalCreate from "../Modal/Modal";
+import Body from "../Body/BodyTaskCreate";
 
 function TableTasks() {
 
     const tasks = Tasks()
+    const [show, setShow] = useState(false)
 
     return (
         <div className={'Tables'}>
@@ -21,7 +25,11 @@ function TableTasks() {
                         <tbody key={key}>
                             <tr>
                                 <td>{val.id}</td>
-                                <td>{val.description}</td>
+                                <td onClick={() => setShow(true)}>
+                                    <label style={{textDecoration: "underline", color: "blue", cursor: "pointer"}}>{val.description}</label>
+                                    <ModalCreate title={'Редактирование - Задача №' + val.id} btnType={'update'} body={Body()}
+                                                 show={show} onClose = {() => setShow(false)} />
+                                </td>
                                 <td>{val.fullNamePerson}</td>
                                 <td>{val.priority}</td>
                             </tr>
