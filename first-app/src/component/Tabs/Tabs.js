@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+
 import './Tabs.css'
+
 import TablePeople from "../Tables/TablePeople";
 import TableTasks from "../Tables/TableTasks";
 import ButtonAddTask from "../Buttons/ButtonAddTask";

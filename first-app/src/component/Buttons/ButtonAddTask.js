@@ -1,7 +1,6 @@
 import './Button.css'
-import ModalCreate from "../Modal/Modal";
 import {useState} from "react";
-import BodyTask from "../Body/BodyTaskCreate";
+import Modal from '../Modal/ModalTask'
 
 function ButtonAddTask() {
     const [show, setShow] = useState(false)
@@ -11,9 +10,9 @@ function ButtonAddTask() {
             <button className={'btn'} onClick={() => setShow(true)}>
                 <h2>Добавить задачу</h2>
             </button>
-            <ModalCreate title={'Добавить задачу'} btnType={'create'} show={show} body={BodyTask()}
+            <Modal title={'Добавить задачу'} btnType={'create'} show={show}
                          onClose = {() => setShow(false)}>
-            </ModalCreate>
+            </Modal>
         </div>
     )
 }

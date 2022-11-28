@@ -1,7 +1,6 @@
 import './Button.css'
 import {useState} from "react";
-import ModalCreate from "../Modal/Modal";
-import BodyPerson from "../Body/BodyPersonCreate";
+import Modal from '../Modal/ModalPersonCreate';
 
 function ButtonAddPerson() {
     const [show, setShow] = useState(false);
@@ -11,9 +10,9 @@ function ButtonAddPerson() {
             <button className={'btn'} onClick={() => setShow(true)}>
                 <h2>Добавить сотрудника</h2>
             </button>
-            <ModalCreate title={'Добавить сотрудника'} btnType={'create'} show={show} body={BodyPerson()}
+            <Modal title={'Добавить сотрудника'} btnType={'create'} show={show}
                          onClose = {() => setShow(false)}>
-            </ModalCreate>
+            </Modal>
         </div>
     )
 }

@@ -1,19 +1,23 @@
 import './Table.css'
-import PeopleGet from "../../rest/person/peopleGet";
 import {useState} from "react";
-import ModalCreate from "../Modal/Modal";
-import Body from "../Body/BodyPersonUpdate";
+import Modal from '../Modal/ModalPersonUpdate'
+import {useSelector} from "react-redux";
+// import {setPeople} from "../../redux/store/personSlice";
+// import GetPeople from "../../rest/person/getPeople";
 
 function TablePeople() {
 
-    const people = PeopleGet()
+    // const dispatch = useDispatch()
+    const people = useSelector(state => state.toolkit.todos)
     const [show, setShow] = useState(false);
 
     return (
         <div className={'Tables'}>
+            {/*{dispatch(setPeople())}*/}
+
             <table>
                 <thead>
-                    <tr>
+                    <tr style={{textAlign: "center"}}>
                         <th>ID</th>
                         <th>ФИО</th>
                         <th>Руководитель</th>
@@ -30,8 +34,8 @@ function TablePeople() {
                                     <div style={{textDecoration: "underline", color: "blue", cursor: "pointer"}}>
                                         {val.name} {val.surName} {val.middleName}
                                     </div>
-                                    <ModalCreate title={'Редактирование - Сотрудник №' + val.id} btnType={'update'} show={show}
-                                                 body={Body()} onClose = {() => setShow(false)} />
+                                    <Modal title={'Редактирование - Сотрудник №' + val.id} btnType={'update'}
+                                           show={show} onClose = {() => setShow(false)} />
                                 </td>
                                 <td>{val.directorFullName}</td>
                                 <td>{val.branchName}</td>
