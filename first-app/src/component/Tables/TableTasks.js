@@ -1,11 +1,24 @@
 import './Table.css'
-import Tasks from "../../rest/task/getTasks";
-import {useState} from "react";
-import Modal from "../Modal/ModalTask";
+import {useEffect, useState} from "react";
+import Modal from "../Modal/ModalTaskCreate";
+import getTasks from "../../rest/task/getTasks";
+import {useDispatch, useSelector} from "react-redux";
+import {setTasks} from "../../redux/store/taskSlice";
 
 function TableTasks() {
 
-    const tasks = Tasks()
+    const dispatch = useDispatch()
+
+    const dataTask = getTasks()
+
+    useEffect(() => {
+        dataTask.map((it) => {
+            dispatch(setTasks(it))
+        })
+    }, [dataTask])
+
+    const tasks = useSelector(state => state.tooltask.todos)
+
     const [show, setShow] = useState(false)
 
     return (

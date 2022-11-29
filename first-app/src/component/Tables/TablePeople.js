@@ -1,20 +1,28 @@
 import './Table.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Modal from '../Modal/ModalPersonUpdate'
-import {useSelector} from "react-redux";
-// import {setPeople} from "../../redux/store/personSlice";
-// import GetPeople from "../../rest/person/getPeople";
+import {useDispatch, useSelector} from "react-redux";
+import getPeople from "../../rest/person/getPeople";
+import {setPeople} from "../../redux/store/personSlice";
 
 function TablePeople() {
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
+
+    const persons = getPeople()
+
+    useEffect(() => {
+        persons.map((it) => {
+            dispatch(setPeople(it))
+        })
+    }, [persons])
+
     const people = useSelector(state => state.toolkit.todos)
+
     const [show, setShow] = useState(false);
 
     return (
         <div className={'Tables'}>
-            {/*{dispatch(setPeople())}*/}
-
             <table>
                 <thead>
                     <tr style={{textAlign: "center"}}>

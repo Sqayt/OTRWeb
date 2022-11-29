@@ -1,5 +1,7 @@
 import './Modal.css'
-import {useCallback, useEffect} from "react";
+import {useCallback, useEffect, useRef} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {createTask} from "../../redux/store/taskSlice";
 
 export default (props) => {
     if (!props.show) {
@@ -20,6 +22,14 @@ export default (props) => {
         }
     }, [closeOnEscapeKeyDown]);
 
+    const dispatch = useDispatch()
+    const fullNames = useSelector(state => state.toolkit.todos)
+
+    const priority = useRef(null)
+    const description = useRef(null)
+    const personFullName = useRef(null)
+
+
     return (
         <div className={'modal'} onClick={props.onClose}>
             <div className={'modal-content'} onClick={e => e.stopPropagation()}>
@@ -30,20 +40,27 @@ export default (props) => {
                 <div className={'modal-body'}>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", marginTop: "45px"}}>Описание</label>
-                        <textarea style={{paddingLeft: "2%", width: "100%", boxSizing: "border-box", padding:"10px", height: "150px"}}/>
+                        <textarea style={{paddingLeft: "2%", width: "100%", boxSizing: "border-box", padding:"10px", height: "150px"}} ref={description}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "69px", marginTop: "45px"}}>Отвественный</label>
-                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "150px"}}>
-                            <option>Михаил</option>
-                            <option>Сергей</option>
+                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "150px"}}
+                                ref={personFullName}>
+
+                            {fullNames.map((val) => {
+                                return (
+                                    <option>{val.surName} {val.name} {val.middleName}</option>
+                                )
+                            })}
+
+                            <option></option>
                         </select>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", marginTop: "45px"}}>Приоритет</label>
 
                         <div className={'btn_position'} style={{display: "flex", marginTop: "5%"}}>
-                            <h3>5</h3>
+                            <h3 ref={priority}>5</h3>
                             <button className={'btn_add'} style={{height: "20px", width: "20px", marginLeft: "18%", marginTop: "45%", textAlign: "center"}}>+</button>
                             <button className={'btn_rem'} style={{height: "20px", width: "20px", marginLeft: "18%", marginTop: "45%", textAlign: "center"}}>-</button>
                         </div>
@@ -58,7 +75,13 @@ export default (props) => {
                                 Удалить
                             </button>
                         }
-                        <button onClick={props.onClose} className={'btn'} style={{marginLeft:"20px"}}>Сохранить</button>
+                        <button className={'btn'} onClick={() => {
+                            dispatch(createTask({
+                                description: description.current.value,
+                                personFullName: personFullName.current.value,
+                                priority: priority.current.value
+                            }))
+                        }} style={{marginLeft:"20px"}}>Сохранить</button>
                     </div>
                 </div>
             </div>

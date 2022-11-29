@@ -1,6 +1,6 @@
 import './Button.css'
 import {useState} from "react";
-import Modal from '../Modal/ModalTask'
+import Modal from '../Modal/ModalTaskCreate'
 
 function ButtonAddTask() {
     const [show, setShow] = useState(false)

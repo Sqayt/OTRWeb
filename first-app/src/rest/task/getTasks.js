@@ -11,12 +11,13 @@ export default () => {
         axios
             .get(apiUrl)
             .then(resp => {
+                if(resp.status !== 200) {
+                    throw new Error()
+                }
+
                 setTasks(resp.data);
             })
-            .catch(txt => {
-                console.log(txt);
-                setTasks([]);
-            })
+            .catch(e => console.log(e))
     }, []);
 
     return tasks;

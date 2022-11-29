@@ -10,17 +10,15 @@ export default () => {
     useEffect(() => {
         axios
             .get(apiUrl)
-            .then(resp => {
-                console.log(resp.data)
+            .then((resp) => {
+                if(resp.status !== 200) {
+                    throw new Error()
+                }
+
                 setPeople(resp.data);
             })
-            .catch(txt => {
-                console.log(txt);
-                setPeople([]);
-            })
-    }, [setPeople]);
-
-
+            .catch(e => console.log(e))
+    }, []);
 
     return people;
 }

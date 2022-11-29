@@ -1,9 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {combineReducers} from "redux";
-import todoSlice from "./store/personSlice";
+import personSlice from "./store/personSlice";
+import taskSlice from "./store/taskSlice";
 
 const rootReducer = combineReducers({
-    toolkit: todoSlice
+    toolkit: personSlice,
+    tooltask: taskSlice
 })
 
 export const store = configureStore({
