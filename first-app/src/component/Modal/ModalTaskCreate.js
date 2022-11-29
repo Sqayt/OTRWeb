@@ -44,12 +44,11 @@ export default (props) => {
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "69px", marginTop: "45px"}}>Отвественный</label>
-                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "150px"}}
-                                ref={personFullName}>
+                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "150px"}}>
 
                             {fullNames.map((val) => {
                                 return (
-                                    <option>{val.surName} {val.name} {val.middleName}</option>
+                                    <option id={val.id} ref={personFullName}>{val.surName} {val.name} {val.middleName}</option>
                                 )
                             })}
 
@@ -79,8 +78,10 @@ export default (props) => {
                             dispatch(createTask({
                                 description: description.current.value,
                                 personFullName: personFullName.current.value,
-                                priority: priority.current.value
-                            }))
+                                priority: 1,
+                                id: personFullName.current.id
+                            }));
+                            props.onClose();
                         }} style={{marginLeft:"20px"}}>Сохранить</button>
                     </div>
                 </div>

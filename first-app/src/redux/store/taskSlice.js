@@ -11,6 +11,7 @@ const taskSlice = createSlice({
 
         },
         createTask(state, action) {
+            console.log(action.payload)
             postTask(action.payload)
         },
         setTasks(state, action) {
