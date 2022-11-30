@@ -8,11 +8,11 @@ export default (person) => {
         .post(apiUrl, person)
         .then((resp) => {
             if (resp.status !== 200) {
-                throw new Error()
+                console.log('Не успешное сохранение, ответ ' + resp.status + ', ошибка:\n');
+                throw new Error();
             }
-            console.log('Успешное сохранение')
+            console.log('Успешное сохранение');
         })
-        .catch((exception) =>
-            console.log('Неуспешное сохранение ' + exception))
+        .catch((exception) => console.log('Неуспешное сохранение ' + exception));
 
 }

@@ -33,7 +33,7 @@ export default (props) => {
     const minPriority = useSelector(state => state.tooltask.minPriority)
 
     let priorityArr = [];
-    for (let i = minPriority; i < (maxPriority - 1); ++i) priorityArr[i] = i + 1
+    for (let i = minPriority; i < (maxPriority - 1); i++) priorityArr[i] = i + 1
 
     return (
         <div className={'modal'} onClick={props.onClose}>

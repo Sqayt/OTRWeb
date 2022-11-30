@@ -12,12 +12,13 @@ export default () => {
             .get(apiUrl)
             .then((resp) => {
                 if(resp.status !== 200) {
-                    throw new Error()
+                    console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:\n');
+                    throw new Error();
                 }
 
                 setPeople(resp.data);
             })
-            .catch(e => console.log(e))
+            .catch(e => console.log(e));
     }, []);
 
     return people;

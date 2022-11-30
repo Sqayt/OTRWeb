@@ -1,25 +1,47 @@
 import './Table.css'
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Modal from "../Modal/ModalTaskCreate";
 import getTasks from "../../rest/task/getTasks";
 import {useDispatch, useSelector} from "react-redux";
-import {setTasks} from "../../redux/store/taskSlice";
+import {setPriority, setTasks} from "../../redux/store/taskSlice";
 
 function TableTasks() {
 
     const dispatch = useDispatch()
 
     const dataTask = getTasks()
-
     useEffect(() => {
+
+        let max = 0;
+        let min = 0;
+        dataTask.map(it => min = it.priority)
+
         dataTask.map((it) => {
-            dispatch(setTasks(it))
-        })
+            dispatch(setTasks(it));
+
+            if (it.priority > max) {
+                max = it.priority;
+            }
+
+            if (it.priority < min) {
+                min = it.priority;
+            }
+        });
+
+        dispatch(setPriority({
+            maxPriority: max,
+            minPriority: min
+        }))
+
     }, [dataTask])
 
     const tasks = useSelector(state => state.tooltask.todos)
 
     const [show, setShow] = useState(false)
+
+    const test = useRef(0)
+
+    const [id, setId] = useState(0)
 
     return (
         <div className={'Tables'}>
@@ -27,23 +49,24 @@ function TableTasks() {
                 <thead>
                     <tr style={{textAlign: "center"}}>
                         <th>ID</th>
-                        <th>Название</th>
+                        <th>Описание</th>
                         <th>Исполнитель</th>
                         <th>Приоритет</th>
                     </tr>
                 </thead>
                 {tasks.map((val, key) => {
                     return (
-                        <tbody key={key}>
+                        <tbody>
                             <tr>
-                                <td>{val.id}</td>
-                                <td onClick={() => setShow(true)}>
-                                    <label style={{textDecoration: "underline", color: "blue", cursor: "pointer"}}>
+                                <td ref={test}>{val.id}</td>
+                                <td>
+                                    <label style={{textDecoration: "underline", color: "blue", cursor: "pointer"}}
+                                           onClick={() => {
+                                               setId(val.id)
+                                               setShow(true)
+                                           }}>
                                         {val.description}
                                     </label>
-
-                                    <Modal title={'Редактирование - Задача №' + val.id} btnType={'update'}
-                                                 show={show} onClose = {() => setShow(false)} />
                                 </td>
                                 <td>{val.fullNamePerson}</td>
                                 <td>{val.priority}</td>
@@ -53,6 +76,8 @@ function TableTasks() {
                 })
                 }
             </table>
+            <Modal title={'Редактирование - Задача №' + id} btnType={'update'}
+                   show={show} onClose = {() => setShow(false)} />
         </div>
     )
 }

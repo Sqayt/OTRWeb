@@ -7,7 +7,7 @@ function ButtonAddPerson() {
 
     return (
         <div className={'btnPosition'}>
-            <button className={'btn'} onClick={() => setShow(true)}>
+            <button className={'btn_switch'} onClick={() => setShow(true)}>
                 <h2>Добавить сотрудника</h2>
             </button>
             <Modal title={'Добавить сотрудника'} show={show}

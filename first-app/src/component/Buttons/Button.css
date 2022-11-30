@@ -3,5 +3,7 @@
     padding: 25px 50px;
 }
 
-.btn {
+.btn_switch {
+    width: 230px;
+    height: 80px;
 }

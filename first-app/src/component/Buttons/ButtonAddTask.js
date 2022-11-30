@@ -7,7 +7,7 @@ function ButtonAddTask() {
 
     return (
         <div className={'btnPosition'}>
-            <button className={'btn'} onClick={() => setShow(true)}>
+            <button className={'btn_switch'} onClick={() => setShow(true)}>
                 <h2>Добавить задачу</h2>
             </button>
             <Modal title={'Добавить задачу'} btnType={'create'} show={show}
