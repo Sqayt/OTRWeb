@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import postTask from "../../rest/task/postTask";
+import deleteTask from "../../rest/task/deleteTask";
+import putTask from "../../rest/task/putTask";
 
 const taskSlice = createSlice({
     name: "todoTask",
@@ -13,14 +15,16 @@ const taskSlice = createSlice({
 
         },
         createTask(state, action) {
-            console.log(action.payload)
             postTask(action.payload)
         },
         setTasks(state, action) {
             state.todos.push(action.payload)
         },
-        deleteTask(state, action) {
-
+        updateTask(state, action) {
+            putTask(action.payload.id, action.payload)
+        },
+        removeTask(state, action) {
+            deleteTask(action.payload)
         },
         setPriority(state, action) {
             state.maxPriority = action.payload.maxPriority;
@@ -31,4 +35,4 @@ const taskSlice = createSlice({
 
 export default taskSlice.reducer;
 
-export const {addTask, deleteTask, createTask, setTasks, setPriority} = taskSlice.actions;
+export const {addTask, removeTask, createTask, setTasks, setPriority} = taskSlice.actions;

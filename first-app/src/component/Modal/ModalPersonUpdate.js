@@ -2,7 +2,6 @@ import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {removePerson, updatePerson} from "../../redux/store/personSlice";
-import putPerson from "../../rest/person/putPerson";
 
 export default (props) => {
     if (!props.show) {

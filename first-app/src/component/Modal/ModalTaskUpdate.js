@@ -1,7 +1,8 @@
 import './Modal.css'
 import {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createTask} from "../../redux/store/taskSlice";
+import {createTask, removeTask} from "../../redux/store/taskSlice";
+import {updatePerson} from "../../redux/store/personSlice";
 
 export default (props) => {
     if (!props.show) {
@@ -25,7 +26,7 @@ export default (props) => {
     const dispatch = useDispatch()
     const fullNames = useSelector(state => state.toolkit.todos)
 
-    const [id, setId] = useState(0)
+    const [idPerson, setIdPerson] = useState(0)
     const description = useRef(null)
     const personFullName = useRef(null)
 
@@ -76,12 +77,19 @@ export default (props) => {
                 <div className={'modal-footer'} style={{display:"flex"}}>
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div style={{marginLeft: "auto"}}>
+                        <button className={'btn'} onClick={() => {
+                            dispatch(removeTask(props.id));
+                            props.onClose();
+                        }
+                        }>Удалить</button>
                         <button className={'btn_add'} onClick={() => {
-                            dispatch(createTask({
+                            dispatch(updatePerson({
                                 description: description.current.value,
                                 personFullName: personFullName.current.value,
                                 priority: priorityArr.current.value,
-                                id: id
+                                id: props.id,
+                                // ID Person
+                                idPerson: idPerson
                             }));
                             props.onClose();
                         }} style={{marginLeft:"20px"}}>Сохранить</button>

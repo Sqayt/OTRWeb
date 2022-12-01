@@ -26,14 +26,10 @@ export default (props) => {
     const fullNames = useSelector(state => state.toolkit.todos)
 
     const [id, setId] = useState(0)
+
     const description = useRef(null)
     const personFullName = useRef(null)
-
-    const maxPriority = useSelector(state => state.tooltask.maxPriority)
-    const minPriority = useSelector(state => state.tooltask.minPriority)
-
-    let priorityArr = [];
-    for (let i = minPriority; i < (maxPriority - 1); ++i) priorityArr[i] = i + 1
+    const priorityArr = useRef(null)
 
     return (
         <div className={'modal'} onClick={props.onClose}>
@@ -60,16 +56,8 @@ export default (props) => {
                         </select>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", marginTop: "45px"}}>Приоритет</label>
-                        <select style={{display: "flex", marginTop: "45px", height: "25px"}} ref={priorityArr}>
-                            {priorityArr.map((val) => {
-                                return (
-                                    <option>
-                                        {val}
-                                    </option>
-                                )
-                            })}
-                        </select>
+                        <label style={{marginRight: "95px", marginTop: "45px"}}>Приоритет</label>
+                        <input type={"number"} style={{marginTop: "45px", height: "20px", width: "50px"}} ref={priorityArr} />
                     </div>
                 </div>
 
@@ -81,6 +69,7 @@ export default (props) => {
                                 description: description.current.value,
                                 personFullName: personFullName.current.value,
                                 priority: priorityArr.current.value,
+                                // Это id Person
                                 id: id
                             }));
                             props.onClose();

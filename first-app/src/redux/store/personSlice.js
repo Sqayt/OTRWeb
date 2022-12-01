@@ -29,4 +29,4 @@ const personSlice = createSlice({
 
 export default personSlice.reducer;
 
-export const {addPerson, updatePerson, removePerson, createPerson, setPeople} = personSlice.actions;
+export const {updatePerson, removePerson, createPerson, setPeople} = personSlice.actions;

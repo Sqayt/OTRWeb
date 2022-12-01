@@ -1,6 +1,6 @@
 import './Table.css'
 import {useEffect, useRef, useState} from "react";
-import Modal from "../Modal/ModalTaskCreate";
+import Modal from "../Modal/ModalTaskUpdate";
 import getTasks from "../../rest/task/getTasks";
 import {useDispatch, useSelector} from "react-redux";
 import {setPriority, setTasks} from "../../redux/store/taskSlice";
@@ -77,7 +77,7 @@ function TableTasks() {
                 }
             </table>
             <Modal title={'Редактирование - Задача №' + id} btnType={'update'}
-                   show={show} onClose = {() => setShow(false)} />
+                   show={show} id={id} onClose = {() => setShow(false)} />
         </div>
     )
 }
