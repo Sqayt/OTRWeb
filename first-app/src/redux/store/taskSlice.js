@@ -11,9 +11,6 @@ const taskSlice = createSlice({
         minPriority: 0
     },
     reducers: {
-        addTask(state, action) {
-
-        },
         createTask(state, action) {
             postTask(action.payload)
         },
@@ -35,4 +32,4 @@ const taskSlice = createSlice({
 
 export default taskSlice.reducer;
 
-export const {addTask, removeTask, createTask, setTasks, setPriority} = taskSlice.actions;
+export const {removeTask, createTask, setTasks, setPriority} = taskSlice.actions;

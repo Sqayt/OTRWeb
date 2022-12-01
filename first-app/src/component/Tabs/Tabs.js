@@ -9,6 +9,7 @@ import ButtonAddTask from "../Buttons/ButtonAddTask";
 import ButtonAddPerson from "../Buttons/ButtonAddPerson";
 
 function MyTabs() {
+
     const tablePeople = TablePeople()
     const tableTasks = TableTasks()
 
@@ -18,31 +19,29 @@ function MyTabs() {
     const [index, setIndex] = useState(0)
 
     return (
-        <div>
-            <Tabs className={'mainTabs'}>
-                <div className={'tabHead'}>
-                    <TabList className={'tabHead'}>
-                        <Tab className={'myTab'} onClick={() => setIndex(0)}>Сотрудники</Tab>
-                        <Tab className={'myTab'} onClick={() => setIndex(1)}>Задачи</Tab>
-                    </TabList>
+        <Tabs className={'mainTabs'}>
+            <div className={'tabHead'}>
+                <TabList className={'tabHead'}>
+                    <Tab className={'myTab'} onClick={() => setIndex(0)}>Сотрудники</Tab>
+                    <Tab className={'myTab'} onClick={() => setIndex(1)}>Задачи</Tab>
+                </TabList>
 
-                    <div className={'btnPositionBlock'} hidden={index === 1}>
-                        {buttonAddPerson}
-                    </div>
-
-                    <div className={'btnPositionBlock'} hidden={index === 0}>
-                        {buttonAddTask}
-                    </div>
+                <div className={'btnPositionBlock'} hidden={index === 1}>
+                    {buttonAddPerson}
                 </div>
 
-                <TabPanel>
-                    {tablePeople}
-                </TabPanel>
-                <TabPanel>
-                    {tableTasks}
-                </TabPanel>
-            </Tabs>
-        </div>
+                <div className={'btnPositionBlock'} hidden={index === 0}>
+                    {buttonAddTask}
+                </div>
+            </div>
+
+            <TabPanel>
+                {tablePeople}
+            </TabPanel>
+            <TabPanel>
+                {tableTasks}
+            </TabPanel>
+        </Tabs>
     )
 }
 

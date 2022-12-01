@@ -4,7 +4,7 @@ import {createPerson} from "../../redux/store/personSlice";
 
 export default (props) => {
     if (!props.show) {
-        return null
+        return null;
     }
 
     const { onClose } = props;
@@ -21,15 +21,15 @@ export default (props) => {
         }
     }, [closeOnEscapeKeyDown]);
 
-    const dispatch = useDispatch()
-    const fullNames = useSelector(state => state.toolkit.todos)
+    const dispatch = useDispatch();
+    const fullNames = useSelector(state => state.toolPerson.todos);
 
-    const post = useRef(null)
-    const surName = useRef(null)
-    const name = useRef(null)
-    const middleName = useRef(null)
-    const branchName = useRef(null)
-    const director = useRef(null)
+    const post = useRef(null);
+    const surName = useRef(null);
+    const name = useRef(null);
+    const middleName = useRef(null);
+    const branchName = useRef(null);
+    const director = useRef(null);
 
     return (
          <div className={'modal'} onClick={props.onClose}>
@@ -39,50 +39,47 @@ export default (props) => {
                 </div>
 
                 <div className={'modal-body'}>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Начальник</label>
-                        <select id={'selectValue'} style={{paddingLeft: "2%", width: "225px", height: "25px",
-                            marginLeft:"auto"}} ref={director}>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Начальник</label>
+                        <select id={'selectValue'} ref={director} className={'modal-select'}>
 
                             {fullNames.map((val) => {
                                 return (
-                                 <option>{val.surName} {val.name} {val.middleName}</option>
+                                 <option id={val.id}>{val.surName} {val.name} {val.middleName}</option>
                                 )
                             })}
+
                             <option></option>
                         </select>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Должность</label>
-                        <input className={'post'} name={'post'} type={'text'} style={{paddingLeft: "2%",
-                            width: "210px", height: "25px", marginLeft:"auto"}} ref={post}/>
+
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Должность</label>
+                        <input className={'modal-input'} name={'post'} type={'text'} ref={post}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Фамилия</label>
-                        <input className={'surName'} name={'surName'} type={'text'} style={{paddingLeft: "2%",
-                            width: "210px", height: "25px", marginLeft:"auto"}} ref={surName}/>
+                        <input className={'modal-input'} name={'surName'} type={'text'} ref={surName}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Имя</label>
-                        <input className={'name'} name={'name'} type={'text'} style={{paddingLeft: "2%",
-                            width: "210px", height: "25px", marginLeft:"auto"}} ref={name}/>
+                        <input className={'modal-input'} name={'name'} type={'text'} ref={name}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Отчество</label>
-                        <input className={'middleName'} name={'middleName'} type={'text'} style={{paddingLeft: "2%",
-                            width: "210px", height: "25px", marginLeft:"auto"}} ref={middleName}/>
+                        <input className={'modal-input'} name={'middleName'} type={'text'} ref={middleName}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Название филиала</label>
-                        <input className={'branchName'} name={'myBranch'} type={'text'} style={{paddingLeft: "2%",
-                            width: "210px", height: "25px", marginLeft:"auto"}} ref={branchName}/>
+                        <input className={'modal-input'} name={'myBranch'} type={'text'} ref={branchName}/>
                     </div>
                 </div>
 
-                <div className={'modal-footer'} style={{display:"flex"}}>
+                <div className={'modal-footer'}>
                     <button onClick={props.onClose} className={'btn'}>Отмена</button>
-                    <div style={{marginLeft: "auto"}}>
-                        <button className={'btn'} onClick={() => {
+
+                    <div className={'buttons_left'}>
+                        <button className={'btn_add'} onClick={() => {
                             dispatch(createPerson(
                             {
                                     post: post.current.value,
@@ -94,7 +91,7 @@ export default (props) => {
                                 }
                             ));
                             props.onClose();
-                        }} style={{marginLeft:"20px"}}>Сохранить</button>
+                        }}>Сохранить</button>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-
-const apiUrl = 'http://localhost:8081/task/api/v1/tasks/'
+import {apiUrl} from "./configTask";
 
 export default () => {
 
@@ -12,9 +11,11 @@ export default () => {
             .get(apiUrl)
             .then(resp => {
                 if(resp.status !== 200) {
-                    throw new Error()
+                    console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:');
+                    throw new Error();
                 }
 
+                console.log('Успешное получение данных');
                 setTasks(resp.data);
             })
             .catch(e => console.log(e))

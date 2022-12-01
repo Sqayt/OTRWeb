@@ -5,18 +5,8 @@ import {removePerson, updatePerson} from "../../redux/store/personSlice";
 
 export default (props) => {
     if (!props.show) {
-        return null
+        return null;
     }
-
-    const dispatch = useDispatch()
-    const fullNames = useSelector(state => state.toolkit.todos)
-
-
-    const post = useRef(null)
-    const surName = useRef(null)
-    const name = useRef(null)
-    const middleName = useRef(null)
-    const director = useRef(null)
 
     const { onClose } = props;
     const closeOnEscapeKeyDown = useCallback((e) => {
@@ -32,6 +22,15 @@ export default (props) => {
         }
     }, [closeOnEscapeKeyDown]);
 
+    const dispatch = useDispatch();
+    const fullNames = useSelector(state => state.toolPerson.todos);
+
+    const post = useRef(null);
+    const surName = useRef(null);
+    const name = useRef(null);
+    const middleName = useRef(null);
+    const director = useRef(null);
+
     return (
         <div className={'modal'} onClick={props.onClose}>
             <div className={'modal-content'} onClick={e => e.stopPropagation()}>
@@ -40,50 +39,46 @@ export default (props) => {
                 </div>
 
                 <div className={'modal-body'}>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Должность</label>
-                        <input className={'post'} type={'text'} style={{paddingLeft: "2%", width: "210px",
-                            height: "25px", marginLeft:"auto"}} ref={post}/>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Должность</label>
+                        <input className={'modal-input'} type={'text'} ref={post}/>
+                    </div>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Фамилия</label>
+                        <input className={'modal-input'} type={'text'} ref={surName}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Фамилия</label>
-                        <input className={'surName'} type={'text'} style={{paddingLeft: "2%", width: "210px",
-                            height: "25px", marginLeft:"auto"}} ref={surName}/>
+                        <label className={'modal-label'}>Имя</label>
+                        <input className={'modal-input'} type={'text'} ref={name}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Имя</label>
-                        <input className={'name'} type={'text'} style={{paddingLeft: "2%", width: "210px",
-                            height: "25px", marginLeft:"auto"}} ref={name}/>
+                        <label className={'modal-label'}>Отчество</label>
+                        <input className={'modal-input'} type={'text'} ref={middleName}/>
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Отчество</label>
-                        <input className={'middleName'} type={'text'} style={{paddingLeft: "2%", width: "210px",
-                            height: "25px", marginLeft:"auto"}} ref={middleName}/>
-                    </div>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Начальник</label>
-                        <select id={'selectValue'} style={{paddingLeft: "2%", width: "225px", height: "25px",
-                            marginLeft:"auto"}} ref={director}>
+                        <label className={'modal-label'}>Начальник</label>
+                        <select id={'selectValue'} ref={director} className={'modal-select'}>
 
                             {fullNames.map((val) => {
                                 return (
-                                    <option>{val.surName} {val.name} {val.middleName}</option>
+                                    <option id={val.id}>{val.surName} {val.name} {val.middleName}</option>
                                 )
                             })}
+
                             <option></option>
                         </select>
                     </div>
                 </div>
 
-                <div className={'modal-footer'} style={{display:"flex"}}>
+                <div className={'modal-footer'}>
                     <button onClick={props.onClose} className={'btn'}>Отмена</button>
-                    <div style={{marginLeft: "auto"}}>
+                    <div className={'buttons_left'}>
                         <button className={'btn'} onClick={() => {
                             dispatch(removePerson(props.id));
                             props.onClose();
                         }
                         }>Удалить</button>
-                        <button className={'btn'} onClick={() => {
+                        <button className={'btn_add'} onClick={() => {
                             dispatch(updatePerson({
                                 id: props.id,
                                 post: post.current.value,
@@ -92,8 +87,8 @@ export default (props) => {
                                 middleName: middleName.current.value,
                                 directorFullName: director.current.value
                             }))
-                            props.onClose()
-                        }} style={{marginLeft:"20px"}}>Сохранить</button>
+                            props.onClose();
+                        }}>Сохранить</button>
                     </div>
                 </div>
             </div>

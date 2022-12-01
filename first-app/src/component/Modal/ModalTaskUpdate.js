@@ -1,7 +1,7 @@
 import './Modal.css'
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createTask, removeTask} from "../../redux/store/taskSlice";
+import {removeTask} from "../../redux/store/taskSlice";
 import {updatePerson} from "../../redux/store/personSlice";
 
 export default (props) => {
@@ -24,14 +24,13 @@ export default (props) => {
     }, [closeOnEscapeKeyDown]);
 
     const dispatch = useDispatch()
-    const fullNames = useSelector(state => state.toolkit.todos)
+    const fullNames = useSelector(state => state.toolPerson.todos)
 
-    const [idPerson, setIdPerson] = useState(0)
     const description = useRef(null)
     const personFullName = useRef(null)
 
-    const maxPriority = useSelector(state => state.tooltask.maxPriority)
-    const minPriority = useSelector(state => state.tooltask.minPriority)
+    const maxPriority = useSelector(state => state.toolTask.maxPriority)
+    const minPriority = useSelector(state => state.toolTask.minPriority)
 
     let priorityArr = [];
     for (let i = minPriority; i < (maxPriority - 1); i++) priorityArr[i] = i + 1
@@ -53,7 +52,7 @@ export default (props) => {
                         <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "200px"}}>
                             {fullNames.map((val) => {
                                 return (
-                                    <option ref={personFullName}>
+                                    <option ref={personFullName} value={val.id}>
                                         {val.surName} {val.name} {val.middleName}
                                     </option>
                                 )
@@ -88,8 +87,7 @@ export default (props) => {
                                 personFullName: personFullName.current.value,
                                 priority: priorityArr.current.value,
                                 id: props.id,
-                                // ID Person
-                                idPerson: idPerson
+                                idPerson: personFullName.current.text
                             }));
                             props.onClose();
                         }} style={{marginLeft:"20px"}}>Сохранить</button>

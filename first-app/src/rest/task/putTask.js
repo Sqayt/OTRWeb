@@ -1,13 +1,17 @@
 import axios from "axios";
-
-const apiUrl = 'http://localhost:8081/task/api/v1/tasks/'
+import {apiUrl} from "./configTask";
 
 export default (id, task) => {
 
     axios
         .put(apiUrl + id, task)
-        .then((response) =>
-            console.log(response))
-        .catch((error) =>
-            console.log(error))
+        .then((resp) => {
+            if (resp.status !== 200) {
+                console.log('Не успешное обновление данных, ответ ' + resp.status + ', ошибка:');
+                throw new Error();
+            }
+
+            console.log("Успешное обновление данных");
+        })
+        .catch(error => console.log(error));
 }

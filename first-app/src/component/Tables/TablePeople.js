@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import getPeople from "../../rest/person/getPeople";
 import {setPeople} from "../../redux/store/personSlice";
 import Modal from "../Modal/ModalPersonUpdate";
+import TablePersonHeader from "./TableHead/TablePeopleHeader";
 
 function TablePeople() {
 
@@ -17,7 +18,7 @@ function TablePeople() {
         })
     }, [persons])
 
-    const people = useSelector(state => state.toolkit.todos)
+    const people = useSelector(state => state.toolPerson.todos)
 
     const [show, setShow] = useState(false);
     const [id, setId] = useState(0)
@@ -25,23 +26,16 @@ function TablePeople() {
     return (
         <div className={'Tables'}>
             <table>
-                <thead>
-                    <tr style={{textAlign: "center"}}>
-                        <th>ID</th>
-                        <th>ФИО</th>
-                        <th>Руководитель</th>
-                        <th>Филиал</th>
-                        <th>Количество задач</th>
-                    </tr>
-                </thead>
-                {people.map((val) => {
+
+                <TablePersonHeader />
+
+                {people.map((val, key) => {
                     return (
-                        <tbody>
+                        <tbody key={key}>
                             <tr>
                                 <td id={val.id}>{val.id}</td>
                                 <td>
-                                    <label style={{textDecoration: "underline", color: "blue", cursor: "pointer"}}
-                                            onClick={() => {
+                                    <label className={'hyper-word'} onClick={() => {
                                                 setId(val.id)
                                                 setShow(true)
                                             }}>

@@ -1,9 +1,10 @@
 import './Table.css'
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import Modal from "../Modal/ModalTaskUpdate";
 import getTasks from "../../rest/task/getTasks";
 import {useDispatch, useSelector} from "react-redux";
 import {setPriority, setTasks} from "../../redux/store/taskSlice";
+import TableTasksHead from "./TableHead/TableTasksHead";
 
 function TableTasks() {
 
@@ -35,33 +36,23 @@ function TableTasks() {
 
     }, [dataTask])
 
-    const tasks = useSelector(state => state.tooltask.todos)
+    const tasks = useSelector(state => state.toolTask.todos)
 
     const [show, setShow] = useState(false)
-
-    const test = useRef(0)
-
     const [id, setId] = useState(0)
 
     return (
         <div className={'Tables'}>
             <table>
-                <thead>
-                    <tr style={{textAlign: "center"}}>
-                        <th>ID</th>
-                        <th>Описание</th>
-                        <th>Исполнитель</th>
-                        <th>Приоритет</th>
-                    </tr>
-                </thead>
+                <TableTasksHead />
+
                 {tasks.map((val, key) => {
                     return (
-                        <tbody>
+                        <tbody key={key}>
                             <tr>
-                                <td ref={test}>{val.id}</td>
+                                <td id={val.id}>{val.id}</td>
                                 <td>
-                                    <label style={{textDecoration: "underline", color: "blue", cursor: "pointer"}}
-                                           onClick={() => {
+                                    <label className={'hyper-word'} onClick={() => {
                                                setId(val.id)
                                                setShow(true)
                                            }}>
@@ -72,12 +63,13 @@ function TableTasks() {
                                 <td>{val.priority}</td>
                             </tr>
                         </tbody>
-                    )
-                })
-                }
+                    )}
+                )}
             </table>
+
             <Modal title={'Редактирование - Задача №' + id} btnType={'update'}
                    show={show} id={id} onClose = {() => setShow(false)} />
+
         </div>
     )
 }

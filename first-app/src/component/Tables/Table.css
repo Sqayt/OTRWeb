@@ -15,6 +15,10 @@ thead {
     background-color: coral;
 }
 
+tr {
+    text-align: center;
+}
+
 tbody {
     background-color: azure;
 }
@@ -25,4 +29,10 @@ th {
 
 td {
     text-align: center;
+}
+
+.hyper-word {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
 }

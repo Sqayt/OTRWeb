@@ -1,7 +1,6 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-
-const apiUrl = 'http://localhost:8081/task/api/v1/persons/'
+import {apiUrl} from "./configPerson";
 
 export default () => {
 
@@ -16,6 +15,7 @@ export default () => {
                     throw new Error();
                 }
 
+                console.log("Успешное получение данных")
                 setPeople(resp.data);
             })
             .catch(e => console.log(e));

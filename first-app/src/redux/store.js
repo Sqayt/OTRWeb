@@ -4,8 +4,8 @@ import personSlice from "./store/personSlice";
 import taskSlice from "./store/taskSlice";
 
 const rootReducer = combineReducers({
-    toolkit: personSlice,
-    tooltask: taskSlice
+    toolPerson: personSlice,
+    toolTask: taskSlice
 })
 
 export const store = configureStore({

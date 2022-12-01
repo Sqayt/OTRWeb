@@ -20,6 +20,7 @@
 .modal-header,
 .modal-footer {
     padding: 10px;
+    display: flex;
 }
 
 .modal-title {
@@ -31,4 +32,35 @@
     padding: 10px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
+}
+
+.modal-div {
+    display: flex;
+    margin: 25px;
+}
+
+.modal-label {
+    margin: 5px 15px 5px 0;
+}
+
+.modal-select {
+    padding-left: 2%;
+    width: 225px;
+    height: 25px;
+    margin-left: auto;
+}
+
+.modal-input {
+    padding-left: 2%;
+    width: 210px;
+    height: 25px;
+    margin-left: auto;
+}
+
+.btn_add {
+    margin-left: 20px;
+}
+
+.buttons_left {
+    margin-left: auto;
 }

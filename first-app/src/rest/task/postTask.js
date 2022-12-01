@@ -1,18 +1,17 @@
 import axios from "axios";
-
-const apiUrl = 'http://localhost:8081/task/api/v1/persons/'
+import {apiUrl} from "./configTask";
 
 export default (task) => {
     
     axios
-        .post(apiUrl + task.id, task)
+        .post(apiUrl + 1, task)
         .then((resp) => {
             console.log(resp)
             if (resp.status !== 200) {
-                throw new Error()
+                console.log('Не успешное сохранение даных, ответ ' +  resp.status + ', ошибка:');
+                throw new Error();
             }
             console.log('Успешное сохранение')
         })
-        .catch((exception) =>
-            console.log('Неуспешное сохранение' + exception))
+        .catch(e => console.log('Не успешное сохранение' + e))
 }

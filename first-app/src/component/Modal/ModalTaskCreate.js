@@ -1,5 +1,5 @@
 import './Modal.css'
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createTask} from "../../redux/store/taskSlice";
 
@@ -23,13 +23,11 @@ export default (props) => {
     }, [closeOnEscapeKeyDown]);
 
     const dispatch = useDispatch()
-    const fullNames = useSelector(state => state.toolkit.todos)
-
-    const [id, setId] = useState(0)
+    const fullNames = useSelector(state => state.toolPerson.todos)
 
     const description = useRef(null)
-    const personFullName = useRef(null)
     const priorityArr = useRef(null)
+    const selectValue = useRef(null)
 
     return (
         <div className={'modal'} onClick={props.onClose}>
@@ -45,10 +43,10 @@ export default (props) => {
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "69px", marginTop: "45px"}}>Отвественный</label>
-                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "200px"}}>
+                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "200px"}} ref={selectValue}>
                             {fullNames.map((val) => {
                                 return (
-                                    <option ref={personFullName}>
+                                    <option id={val.id}>
                                         {val.surName} {val.name} {val.middleName}
                                     </option>
                                 )
@@ -65,12 +63,14 @@ export default (props) => {
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div style={{marginLeft: "auto"}}>
                         <button className={'btn_add'} onClick={() => {
+                            let options = document.getElementById("selectValue");
+                            let id = options[options.selectedIndex].id
+
                             dispatch(createTask({
                                 description: description.current.value,
-                                personFullName: personFullName.current.value,
+                                personFullName: selectValue.current.value,
                                 priority: priorityArr.current.value,
-                                // Это id Person
-                                id: id
+                                idPerson: id
                             }));
                             props.onClose();
                         }} style={{marginLeft:"20px"}}>Сохранить</button>

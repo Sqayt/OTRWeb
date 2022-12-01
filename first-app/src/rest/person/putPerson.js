@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const apiUrl = 'http://localhost:8081/task/api/v1/persons/'
+import {apiUrl} from "./configPerson";
 
 export default (id, person) => {
 
@@ -11,7 +10,8 @@ export default (id, person) => {
                 console.log('Не успешное обновление данных, ответ ' + resp.status + ', ошибка:\n');
                 throw new Error();
             }
+
             console.log('Успешное обновление')
         })
-        .catch((exception) => console.log(exception))
+        .catch((e) => console.log(e))
 }

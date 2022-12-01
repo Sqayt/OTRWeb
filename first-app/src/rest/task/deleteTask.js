@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const apiUrl = 'http://localhost:8081/task/api/v1/tasks/'
+import {apiUrl} from "./configTask";
 
 export default (id) => {
 
@@ -11,8 +10,8 @@ export default (id) => {
                 console.log('Неуспешное удаление, ответ ' + resp.status + ', ошибка: ');
                 throw new Error();
             }
+
             console.log('Успешное удаление')
         })
-        .catch((exception) =>
-            console.log(exception))
+        .catch(e => console.log(e));
 }

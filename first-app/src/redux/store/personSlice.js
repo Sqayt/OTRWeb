@@ -9,9 +9,6 @@ const personSlice = createSlice({
         todos: []
     },
     reducers: {
-        addPerson(state, action) {
-
-        },
         createPerson(state, action) {
             postPerson(action.payload)
         },
