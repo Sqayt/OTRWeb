@@ -2,6 +2,7 @@ import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createTask} from "../../redux/store/taskSlice";
+import setDataTask from "../../redux/logic/setDataTask";
 
 export default (props) => {
     if (!props.show) {
@@ -71,6 +72,7 @@ export default (props) => {
                                 priority: priorityArr.current.value,
                                 idPerson: selectValue.current.value
                             }));
+                            setDataTask()
                             props.onClose();
                         }}>Сохранить</button>
                     </div>

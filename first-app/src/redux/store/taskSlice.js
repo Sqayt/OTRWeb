@@ -32,4 +32,4 @@ const taskSlice = createSlice({
 
 export default taskSlice.reducer;
 
-export const {updateTask, removeTask, createTask, setTasks, setPriority} = taskSlice.actions;
+export const {restartTasks, updateTask, removeTask, createTask, setTasks, setPriority} = taskSlice.actions;

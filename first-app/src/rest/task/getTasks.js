@@ -15,8 +15,10 @@ export default () => {
                     throw new Error();
                 }
 
-                console.log('Успешное получение данных');
-                setTasks(resp.data);
+                if (resp.data !== tasks) {
+                    console.log('Успешное получение данных');
+                    setTasks(resp.data);
+                }
             })
             .catch(e => console.log(e))
     }, []);

@@ -62,6 +62,7 @@
     box-sizing: border-box;
     padding: 10px;
     height: 150px;
+    margin-left: 115px;
 }
 
 .btn_add {

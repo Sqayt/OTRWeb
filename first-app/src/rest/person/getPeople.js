@@ -15,11 +15,15 @@ export default () => {
                     throw new Error();
                 }
 
-                console.log("Успешное получение данных")
-                setPeople(resp.data);
+                if (resp.data !== people) {
+                    console.log("Успешное получение данных")
+                    setPeople(resp.data);
+                }
             })
             .catch(e => console.log(e));
     }, []);
+
+    if (!people) return null;
 
     return people;
 }
