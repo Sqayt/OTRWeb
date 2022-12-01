@@ -57,20 +57,20 @@ export default (props) => {
                         <label className={'modal-label'}>Должность</label>
                         <input className={'modal-input'} name={'post'} type={'text'} ref={post}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Фамилия</label>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Фамилия</label>
                         <input className={'modal-input'} name={'surName'} type={'text'} ref={surName}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Имя</label>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Имя</label>
                         <input className={'modal-input'} name={'name'} type={'text'} ref={name}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Отчество</label>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Отчество</label>
                         <input className={'modal-input'} name={'middleName'} type={'text'} ref={middleName}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
-                        <label style={{marginRight: "100px", margin: "5px 15px 5px 0px"}}>Название филиала</label>
+                    <div className={'modal-div'}>
+                        <label className={'modal-label'}>Название филиала</label>
                         <input className={'modal-input'} name={'myBranch'} type={'text'} ref={branchName}/>
                     </div>
                 </div>

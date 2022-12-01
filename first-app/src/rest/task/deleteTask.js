@@ -1,10 +1,10 @@
 import axios from "axios";
 import {apiUrl} from "./configTask";
 
-export default (id) => {
+export default (idPerson, idTask) => {
 
     axios
-        .delete(apiUrl + id)
+        .delete(apiUrl + idPerson + "/" + idTask)
         .then((resp) => {
             if (resp.status !== 200) {
                 console.log('Неуспешное удаление, ответ ' + resp.status + ', ошибка: ');

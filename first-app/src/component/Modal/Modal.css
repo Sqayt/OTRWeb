@@ -57,6 +57,13 @@
     margin-left: auto;
 }
 
+.modal-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 150px;
+}
+
 .btn_add {
     margin-left: 20px;
 }

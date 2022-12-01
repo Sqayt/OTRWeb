@@ -47,15 +47,15 @@ export default (props) => {
                         <label className={'modal-label'}>Фамилия</label>
                         <input className={'modal-input'} type={'text'} ref={surName}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
+                    <div className={'modal-div'}>
                         <label className={'modal-label'}>Имя</label>
                         <input className={'modal-input'} type={'text'} ref={name}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
+                    <div className={'modal-div'}>
                         <label className={'modal-label'}>Отчество</label>
                         <input className={'modal-input'} type={'text'} ref={middleName}/>
                     </div>
-                    <div style={{display: "flex", margin: "25px"}}>
+                    <div className={'modal-div'}>
                         <label className={'modal-label'}>Начальник</label>
                         <select id={'selectValue'} ref={director} className={'modal-select'}>
 

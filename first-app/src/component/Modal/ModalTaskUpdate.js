@@ -1,8 +1,7 @@
 import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {removeTask} from "../../redux/store/taskSlice";
-import {updatePerson} from "../../redux/store/personSlice";
+import {removeTask, updateTask} from "../../redux/store/taskSlice";
 
 export default (props) => {
     if (!props.show) {
@@ -28,12 +27,7 @@ export default (props) => {
 
     const description = useRef(null)
     const personFullName = useRef(null)
-
-    const maxPriority = useSelector(state => state.toolTask.maxPriority)
-    const minPriority = useSelector(state => state.toolTask.minPriority)
-
-    let priorityArr = [];
-    for (let i = minPriority; i < (maxPriority - 1); i++) priorityArr[i] = i + 1
+    const priorityArr = useRef(null)
 
     return (
         <div className={'modal'} onClick={props.onClose}>
@@ -49,10 +43,10 @@ export default (props) => {
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "69px", marginTop: "45px"}}>Отвественный</label>
-                        <select id={'selectValue'} style={{marginTop: "45px", height: "25px", width: "200px"}}>
+                        <select id={'selectedPerson'} style={{marginTop: "45px", height: "25px", width: "200px"}} ref={personFullName}>
                             {fullNames.map((val) => {
                                 return (
-                                    <option ref={personFullName} value={val.id}>
+                                    <option value={val.id}>
                                         {val.surName} {val.name} {val.middleName}
                                     </option>
                                 )
@@ -61,15 +55,7 @@ export default (props) => {
                     </div>
                     <div style={{display: "flex", margin: "25px"}}>
                         <label style={{marginRight: "100px", marginTop: "45px"}}>Приоритет</label>
-                        <select style={{display: "flex", marginTop: "45px", height: "25px"}} ref={priorityArr}>
-                            {priorityArr.map((val) => {
-                                return (
-                                    <option>
-                                        {val}
-                                    </option>
-                                )
-                            })}
-                        </select>
+                        <input type={"number"} style={{marginTop: "45px", height: "20px", width: "50px"}} ref={priorityArr} />
                     </div>
                 </div>
 
@@ -77,17 +63,21 @@ export default (props) => {
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div style={{marginLeft: "auto"}}>
                         <button className={'btn'} onClick={() => {
-                            dispatch(removeTask(props.id));
+                            dispatch(removeTask({
+                                id: props.id,
+                                personId: personFullName.current.value}
+                            ));
                             props.onClose();
                         }
                         }>Удалить</button>
                         <button className={'btn_add'} onClick={() => {
-                            dispatch(updatePerson({
+
+                            dispatch(updateTask({
                                 description: description.current.value,
-                                personFullName: personFullName.current.value,
+                                personFullName: personFullName.current.text,
                                 priority: priorityArr.current.value,
                                 id: props.id,
-                                idPerson: personFullName.current.text
+                                personId: personFullName.current.value
                             }));
                             props.onClose();
                         }} style={{marginLeft:"20px"}}>Сохранить</button>
