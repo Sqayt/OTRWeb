@@ -17,7 +17,9 @@
     transform: translateY(-200px);
 }
 
-.modal-header,
+.modal-header {
+    padding: 10px;
+}
 .modal-footer {
     padding: 10px;
     display: flex;
@@ -71,4 +73,11 @@
 
 .buttons_left {
     margin-left: auto;
+}
+
+.modal-input-number {
+    padding-left: 2%;
+    width: 75px;
+    height: 25px;
+    margin-left: 110px;
 }

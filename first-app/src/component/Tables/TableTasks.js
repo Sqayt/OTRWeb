@@ -7,9 +7,9 @@ import setDataTask from "../../redux/logic/setDataTask";
 
 function TableTasks() {
 
-    const tasks = useSelector(state => state.toolTask.todos)
-
     setDataTask();
+
+    const tasks = useSelector(state => state.toolTask.todos)
 
     const [show, setShow] = useState(false)
     const [id, setId] = useState(0)

@@ -13,6 +13,8 @@ export default (person) => {
 
             console.log('Успешное сохранение');
         })
-        .catch(e => console.log(e));
+        .catch(e => {
+            console.log(e)
+        });
 
 }

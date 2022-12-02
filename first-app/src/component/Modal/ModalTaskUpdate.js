@@ -55,7 +55,7 @@ export default (props) => {
                     </div>
                     <div className={'modal-div'}>
                         <label className={'modal-label'}>Приоритет</label>
-                        <input type={"number"} className={'modal-input'} ref={priorityArr} />
+                        <input type={"number"} className={'modal-input-number'} ref={priorityArr} />
                     </div>
                 </div>
 
@@ -80,6 +80,7 @@ export default (props) => {
                                 id: props.id,
                                 personId: personFullName.current.value
                             }));
+
                             props.onClose();
                         }}>Сохранить</button>
                     </div>

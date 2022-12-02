@@ -24,6 +24,7 @@ const personSlice = createSlice({
     },
 });
 
+
 export default personSlice.reducer;
 
 export const {updatePerson, removePerson, createPerson, setPeople} = personSlice.actions;
