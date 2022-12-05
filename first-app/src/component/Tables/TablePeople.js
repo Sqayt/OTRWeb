@@ -34,7 +34,7 @@ function TablePeople() {
                                 </td>
                                 <td>{val.directorFullName}</td>
                                 <td>{val.branchName}</td>
-                                <td>{val.tasks.length}</td>
+                                {/*<td>{val.tasks.length}</td>*/}
                             </tr>
                         </tbody>
                     )}

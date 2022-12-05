@@ -18,7 +18,7 @@ const taskSlice = createSlice({
             state.todos.push(action.payload)
         },
         updateTask(state, action) {
-            putTask(action.payload.personId, action.payload)
+            putTask(action.payload.id, action.payload)
         },
         removeTask(state, action) {
             deleteTask(action.payload.personId, action.payload.id)

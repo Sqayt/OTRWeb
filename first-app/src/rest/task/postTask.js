@@ -1,10 +1,10 @@
 import axios from "axios";
-import {apiUrl} from '../person/configPerson';
+import {apiUrl} from './configTask';
 
 export default (idPerson, task) => {
     
     axios
-        .post(apiUrl + idPerson, task)
+        .post(apiUrl, task)
         .then((resp) => {
             console.log(resp)
             if (resp.status !== 200) {
