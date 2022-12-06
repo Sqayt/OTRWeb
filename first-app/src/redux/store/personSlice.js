@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import postPerson from "../../rest/person/postPerson";
 import deletePerson from "../../rest/person/deletePerson";
 import putPerson from "../../rest/person/putPerson";
+import setDataPeople from "../logic/setDataPeople";
 
 const personSlice = createSlice({
     name: 'todoPerson',

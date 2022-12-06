@@ -12,7 +12,9 @@ function ButtonAddPerson() {
                 <h2>Добавить сотрудника</h2>
             </button>
 
-            <Modal title={'Добавить сотрудника'} show={show} onClose = {() => setShow(false)} />
+            <Modal title={'Добавить сотрудника'} show={show} onClose = {() => {
+                setShow(false)
+            }} />
 
         </div>
     )

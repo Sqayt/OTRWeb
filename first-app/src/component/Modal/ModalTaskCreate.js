@@ -1,7 +1,8 @@
 import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createTask} from "../../redux/store/taskSlice";
+import {createTask, setTasks} from "../../redux/store/taskSlice";
+import getPeople from "../../rest/person/getPeople";
 
 export default (props) => {
     if (!props.show) {
@@ -63,14 +64,16 @@ export default (props) => {
                 <div className={'modal-footer'}>
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div className={'buttons_left'}>
-                        <button className={'btn_add'} onClick={() => {
+                        <button className={'btn_add'} onClick={async () => {
 
                             dispatch(createTask({
                                 description: description.current.value,
                                 personFullName: selectValue.current.text,
                                 priority: priorityArr.current.value,
-                                idPerson: selectValue.current.value
+                                fullNamePerson: selectValue.current.value
                             }));
+                            const response = await getPeople()
+                            dispatch(setTasks(response))
                             props.onClose();
                         }}>Сохранить</button>
                     </div>

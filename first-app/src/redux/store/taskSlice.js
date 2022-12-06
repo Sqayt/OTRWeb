@@ -12,7 +12,7 @@ const taskSlice = createSlice({
     },
     reducers: {
         createTask(state, action) {
-            postTask(action.payload.idPerson, action.payload)
+            postTask(action.payload)
         },
         setTasks(state, action) {
             state.todos.push(action.payload)
@@ -21,7 +21,7 @@ const taskSlice = createSlice({
             putTask(action.payload.id, action.payload)
         },
         removeTask(state, action) {
-            deleteTask(action.payload.personId, action.payload.id)
+            deleteTask(action.payload.id)
         },
         setPriority(state, action) {
             state.maxPriority = action.payload.maxPriority;

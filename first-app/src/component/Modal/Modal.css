@@ -60,12 +60,19 @@
     margin-left: auto;
 }
 
+.modal-input-number {
+    padding-left: 2%;
+    width: 50px;
+    height: 20px;
+    margin-left: 110px;
+}
+
 .modal-textarea {
     width: 100%;
-    box-sizing: border-box;
     padding: 10px;
     height: 150px;
     margin-left: 115px;
+    font-size: 14px;
 }
 
 .btn_add {

@@ -29,12 +29,12 @@ function TablePeople() {
                                                 setId(val.id)
                                                 setShow(true)
                                             }}>
-                                        {val.name} {val.surName} {val.middleName}
+                                        {val.surName} {val.name}  {val.middleName}
                                     </label>
                                 </td>
                                 <td>{val.directorFullName}</td>
                                 <td>{val.branchName}</td>
-                                {/*<td>{val.tasks.length}</td>*/}
+                                <td>{val.countTask}</td>
                             </tr>
                         </tbody>
                     )}

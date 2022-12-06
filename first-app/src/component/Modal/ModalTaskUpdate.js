@@ -66,7 +66,6 @@ export default (props) => {
 
                             dispatch(removeTask({
                                 id: props.id,
-                                personId: personFullName.current.value
                             }));
                             props.onClose();
                         }}>Удалить</button>
@@ -78,7 +77,7 @@ export default (props) => {
                                 personFullName: personFullName.current.text,
                                 priority: priorityArr.current.value,
                                 id: props.id,
-                                personId: personFullName.current.value
+                                fullNamePerson: personFullName.current.value
                             }));
 
                             props.onClose();

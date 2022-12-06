@@ -61,7 +61,7 @@ export default (props) => {
 
                             {fullNames.map((val) => {
                                 return (
-                                    <option id={val.id}>{val.surName} {val.name} {val.middleName}</option>
+                                    <option value={val.id}>{val.surName} {val.name} {val.middleName}</option>
                                 )
                             })}
 
