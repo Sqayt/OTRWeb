@@ -15,7 +15,17 @@ const taskSlice = createSlice({
             postTask(action.payload)
         },
         setTasks(state, action) {
-            state.todos.push(action.payload)
+            let check = true;
+
+            state.todos.map((it) => {
+                if (it.description === action.payload.description) {
+                    check = false;
+                }
+            })
+
+            if (check) {
+                state.todos.push(action.payload)
+            }
         },
         updateTask(state, action) {
             putTask(action.payload.id, action.payload)

@@ -14,7 +14,17 @@ const personSlice = createSlice({
             postPerson(action.payload)
         },
         setPeople(state, action) {
-            state.todos.push(action.payload)
+            let check = true;
+
+            state.todos.map((it) => {
+                if (it.id === action.payload.id) {
+                    check = false;
+                }
+            })
+
+            if (check) {
+                state.todos.push(action.payload)
+            }
         },
         removePerson(state, action) {
             deletePerson(action.payload)

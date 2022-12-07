@@ -1,5 +1,6 @@
 import axios from "axios";
 import {apiUrl} from './configTask';
+import getTasks from "./getTasks";
 
 export default (task) => {
     

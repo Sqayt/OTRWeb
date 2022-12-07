@@ -1,18 +1,39 @@
 import './Table.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Modal from "../Modal/ModalTaskUpdate";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import TableTasksHead from "./TableHead/TableTasksHead";
-import setDataTask from "../../redux/logic/setDataTask";
+import axios from "axios";
+import {apiUrl} from "../../rest/task/configTask";
+import {setTasks} from "../../redux/store/taskSlice";
 
 function TableTasks() {
+    const dispatch = useDispatch()
 
-    setDataTask();
+    const [id, setId] = useState(0)
+    const [show, setShow] = useState(false)
 
     const tasks = useSelector(state => state.toolTask.todos)
 
-    const [show, setShow] = useState(false)
-    const [id, setId] = useState(0)
+    useEffect(() => {
+        axios
+            .get(apiUrl)
+            .then(resp => {
+                if(resp.status !== 200) {
+                    console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:');
+                    throw new Error();
+                }
+
+                if (resp.data !== tasks) {
+                    console.log('Успешное получение данных');
+
+                    resp.data.map((it) => {
+                        dispatch(setTasks(it))
+                    });
+                }
+            })
+            .catch(e => console.log(e))
+    }, [show]);
 
     return (
         <div className={'Tables'}>

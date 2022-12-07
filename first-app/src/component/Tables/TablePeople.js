@@ -8,11 +8,10 @@ import setDataTask from "../../redux/logic/setDataTask";
 
 function TablePeople() {
 
-    setDataPeople();
-
-    const people = useSelector(state => state.toolPerson.todos);
+    setDataPeople()
 
     const [show, setShow] = useState(false);
+    const people = useSelector(state => state.toolPerson.todos);
     const [id, setId] = useState(0);
 
     return (
