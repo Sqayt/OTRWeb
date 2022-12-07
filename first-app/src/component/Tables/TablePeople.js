@@ -4,6 +4,7 @@ import {useSelector} from "react-redux";
 import Modal from "../Modal/ModalPersonUpdate";
 import TablePersonHeader from "./TableHead/TablePeopleHeader";
 import setDataPeople from "../../redux/logic/setDataPeople";
+import setDataTask from "../../redux/logic/setDataTask";
 
 function TablePeople() {
 

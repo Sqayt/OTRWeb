@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {apiUrl} from "./configTask";
 
+
 export default () => {
 
     const [tasks, setTasks] = useState([]);
@@ -19,9 +20,10 @@ export default () => {
                     console.log('Успешное получение данных');
                     setTasks(resp.data);
                 }
+
             })
             .catch(e => console.log(e))
-    }, []);
+    },[]);
 
-    return tasks;
+    return [tasks, setTasks];
 }

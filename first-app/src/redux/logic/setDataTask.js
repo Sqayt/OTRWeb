@@ -4,11 +4,11 @@ import {setPriority, setTasks} from "../store/taskSlice";
 import {useDispatch} from "react-redux";
 
 export default () => {
+
     const dispatch = useDispatch()
+    const [dataTask, setDataTask] = getTasks()
 
-    const dataTask = getTasks()
     useEffect(() => {
-
         let max = 0;
         let min = 0;
         dataTask.map(it => min = it.priority)
