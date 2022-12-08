@@ -79,16 +79,17 @@ export default (props) => {
                     <button onClick={props.onClose} className={'btn'}>Отмена</button>
 
                     <div className={'buttons_left'}>
+
                         <button className={'btn_add'} onClick={() => {
                             dispatch(createPerson(
-                            {
-                                    post: post.current.value,
-                                    name: name.current.value,
-                                    surName: surName.current.value,
-                                    middleName: middleName.current.value,
-                                    branchName: branchName.current.value,
-                                    directorFullName: director.current.value
-                                }
+                                {
+                                        post: post.current.value,
+                                        name: name.current.value,
+                                        surName: surName.current.value,
+                                        middleName: middleName.current.value,
+                                        branchName: branchName.current.value,
+                                        directorFullName: director.current.value
+                                    }
                             ));
                             props.onClose();
                         }}>Сохранить</button>

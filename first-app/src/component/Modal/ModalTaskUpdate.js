@@ -62,24 +62,21 @@ export default (props) => {
                 <div className={'modal-footer'}>
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div className={'buttons_left'}>
-                        <button className={'btn_add'} onClick={() => {
-
-                            dispatch(removeTask({
-                                id: props.id,
-                            }));
+                        <button className={'btn_add'} onClick={() => {dispatch(removeTask(
+                                props.id
+                        ));
                             props.onClose();
                         }}>Удалить</button>
-
                         <button className={'btn_add'} onClick={() => {
-
-                            dispatch(updateTask({
-                                description: description.current.value,
-                                personFullName: personFullName.current.text,
-                                priority: priorityArr.current.value,
-                                id: props.id,
-                                fullNamePerson: personFullName.current.value
-                            }));
-
+                            dispatch(updateTask(
+                                {
+                                        description: description.current.value,
+                                        personFullName: personFullName.current.text,
+                                        priority: priorityArr.current.value,
+                                        id: props.id,
+                                        fullNamePerson: personFullName.current.value
+                                    }
+                            ));
                             props.onClose();
                         }}>Сохранить</button>
                     </div>

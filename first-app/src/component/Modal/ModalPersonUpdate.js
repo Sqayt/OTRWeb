@@ -74,19 +74,24 @@ export default (props) => {
                     <button onClick={props.onClose} className={'btn'}>Отмена</button>
                     <div className={'buttons_left'}>
                         <button className={'btn'} onClick={() => {
-                            dispatch(removePerson(props.id));
+                            dispatch(removePerson(
+                                props.id));
                             props.onClose();
                         }
                         }>Удалить</button>
+
                         <button className={'btn_add'} onClick={() => {
-                            dispatch(updatePerson({
-                                id: props.id,
-                                post: post.current.value,
-                                name: name.current.value,
-                                surName: surName.current.value,
-                                middleName: middleName.current.value,
-                                directorFullName: director.current.value
-                            }))
+
+                            dispatch(updatePerson(
+                                {
+                                        id: props.id,
+                                        post: post.current.value,
+                                        name: name.current.value,
+                                        surName: surName.current.value,
+                                        middleName: middleName.current.value,
+                                        directorFullName: director.current.value
+                                    }
+                            ));
                             props.onClose();
                         }}>Сохранить</button>
                     </div>

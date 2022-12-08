@@ -1,9 +1,30 @@
 import './Button.css'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Modal from '../Modal/ModalTaskCreate'
+import axios from "axios";
+import {apiUrl} from "../../rest/task/configTask";
+import {useDispatch} from "react-redux";
+import {setTasks} from "../../redux/store/taskSlice";
 
 function ButtonAddTask() {
+    const dispatch = useDispatch()
     const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        axios
+            .get(apiUrl)
+            .then(resp => {
+                if(resp.status !== 200) {
+                    console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:');
+                    throw new Error();
+                }
+                let dataTask = resp.data
+
+                console.log('Успешное получение данных');
+                dispatch(setTasks(dataTask))
+            })
+            .catch(e => console.log(e))
+    }, [show]);
 
     return (
         <div className={'btnPosition'}>
@@ -12,7 +33,8 @@ function ButtonAddTask() {
                 <h2>Добавить задачу</h2>
             </button>
 
-            <Modal title={'Добавить задачу'} btnType={'create'} show={show} onClose = {() => setShow(false)} />
+            <Modal title={'Добавить задачу'} btnType={'create'} show={show}
+                   onClose = {() => setShow(false)} />
 
         </div>
     )

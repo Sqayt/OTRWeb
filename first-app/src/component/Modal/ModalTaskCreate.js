@@ -63,14 +63,15 @@ export default (props) => {
                 <div className={'modal-footer'}>
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div className={'buttons_left'}>
-                        <button className={'btn_add'} onClick={async () => {
-
-                            dispatch(createTask({
-                                description: description.current.value,
-                                personFullName: selectValue.current.text,
-                                priority: priorityArr.current.value,
-                                fullNamePerson: selectValue.current.value
-                            }));
+                        <button className={'btn_add'} onClick={() => {
+                            dispatch(createTask(
+                                {
+                                        description: description.current.value,
+                                        personFullName: selectValue.current.text,
+                                        priority: priorityArr.current.value,
+                                        fullNamePerson: selectValue.current.value
+                                    }
+                            ));
                             props.onClose();
                         }}>Сохранить</button>
                     </div>

@@ -23,14 +23,9 @@ function TableTasks() {
                     console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:');
                     throw new Error();
                 }
+                let dataTasks = resp.data
 
-                if (resp.data !== tasks) {
-                    console.log('Успешное получение данных');
-
-                    resp.data.map((it) => {
-                        dispatch(setTasks(it))
-                    });
-                }
+                dispatch(setTasks(dataTasks))
             })
             .catch(e => console.log(e))
     }, [show]);

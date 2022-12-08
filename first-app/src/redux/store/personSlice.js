@@ -2,7 +2,6 @@ import {createSlice} from '@reduxjs/toolkit';
 import postPerson from "../../rest/person/postPerson";
 import deletePerson from "../../rest/person/deletePerson";
 import putPerson from "../../rest/person/putPerson";
-import setDataPeople from "../logic/setDataPeople";
 
 const personSlice = createSlice({
     name: 'todoPerson',
@@ -14,23 +13,13 @@ const personSlice = createSlice({
             postPerson(action.payload)
         },
         setPeople(state, action) {
-            let check = true;
-
-            state.todos.map((it) => {
-                if (it.id === action.payload.id) {
-                    check = false;
-                }
-            })
-
-            if (check) {
-                state.todos.push(action.payload)
-            }
-        },
-        removePerson(state, action) {
-            deletePerson(action.payload)
+            state.todos = action.payload
         },
         updatePerson(state, action) {
             putPerson(action.payload.id, action.payload)
+        },
+        removePerson(state, action) {
+            deletePerson(action.payload)
         }
     },
 });
