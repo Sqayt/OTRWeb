@@ -1,7 +1,7 @@
 import axios from "axios";
 import {apiUrl} from "./configPerson";
 
-export default (id) => {
+export default async (id) => {
 
     axios
         .delete(apiUrl + id)

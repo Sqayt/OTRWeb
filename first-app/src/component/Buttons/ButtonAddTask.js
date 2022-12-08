@@ -8,7 +8,9 @@ import {setTasks} from "../../redux/store/taskSlice";
 
 function ButtonAddTask() {
     const dispatch = useDispatch()
+
     const [show, setShow] = useState(false)
+    const [state, setState] = useState(false)
 
     useEffect(() => {
         axios
@@ -16,8 +18,11 @@ function ButtonAddTask() {
             .then(resp => {
                 if(resp.status !== 200) {
                     console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:');
+                    setState(false);
+
                     throw new Error();
                 }
+                setState(true)
                 let dataTask = resp.data
 
                 console.log('Успешное получение данных');
@@ -29,7 +34,7 @@ function ButtonAddTask() {
     return (
         <div className={'btnPosition'}>
 
-            <button className={'btn_switch'} onClick={() => setShow(true)}>
+            <button className={'btn_switch'} disabled={!state} onClick={() => setShow(true)}>
                 <h2>Добавить задачу</h2>
             </button>
 

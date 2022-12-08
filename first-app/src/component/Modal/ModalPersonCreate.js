@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createPerson} from "../../redux/store/personSlice";
+import MyAlertPerson from "./Elements/MyAlertPerson";
 
 export default (props) => {
     if (!props.show) {
@@ -81,17 +82,24 @@ export default (props) => {
                     <div className={'buttons_left'}>
 
                         <button className={'btn_add'} onClick={() => {
-                            dispatch(createPerson(
-                                {
-                                        post: post.current.value,
-                                        name: name.current.value,
-                                        surName: surName.current.value,
-                                        middleName: middleName.current.value,
-                                        branchName: branchName.current.value,
-                                        directorFullName: director.current.value
-                                    }
-                            ));
-                            props.onClose();
+                            let person = {
+                                post: post.current.value,
+                                name: name.current.value,
+                                surName: surName.current.value,
+                                middleName: middleName.current.value,
+                                branchName: branchName.current.value,
+                                directorFullName: director.current.value
+                            }
+
+                            let myAlert = MyAlertPerson(person)
+
+                            if (!myAlert) {
+                                dispatch(createPerson
+                                (
+                                    person
+                                ));
+                                props.onClose();
+                            }
                         }}>Сохранить</button>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import {apiUrl} from "./configTask";
 
-export default (idTask) => {
+export default async (idTask) => {
 
     axios
         .delete(apiUrl + idTask)

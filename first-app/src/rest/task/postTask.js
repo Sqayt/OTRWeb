@@ -1,7 +1,7 @@
 import axios from "axios";
 import {apiUrl} from './configTask';
 
-export default (task) => {
+export default async (task) => {
     
     axios
         .post(apiUrl, task)

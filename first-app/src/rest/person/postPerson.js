@@ -1,9 +1,9 @@
 import axios from "axios";
 import {apiUrl} from "./configPerson";
 
-export default (person) => {
+export default async (person) => {
 
-     axios
+    axios
         .post(apiUrl, person)
         .then((resp) => {
             if (resp.status !== 200) {

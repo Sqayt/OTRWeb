@@ -2,6 +2,7 @@ import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createTask} from "../../redux/store/taskSlice";
+import MyAlertPerson from "./Elements/MyAlertPerson";
 
 export default (props) => {
     if (!props.show) {
@@ -64,15 +65,22 @@ export default (props) => {
                     <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
                     <div className={'buttons_left'}>
                         <button className={'btn_add'} onClick={() => {
-                            dispatch(createTask(
-                                {
-                                        description: description.current.value,
-                                        personFullName: selectValue.current.text,
-                                        priority: priorityArr.current.value,
-                                        fullNamePerson: selectValue.current.value
-                                    }
-                            ));
-                            props.onClose();
+                            let task = {
+                                description: description.current.value,
+                                personFullName: selectValue.current.text,
+                                priority: priorityArr.current.value,
+                                fullNamePerson: selectValue.current.value
+                            }
+
+                            let myAlert = MyAlertPerson(task)
+
+                            if (!myAlert) {
+                                dispatch(createTask
+                                (
+                                    task
+                                ));
+                                props.onClose();
+                            }
                         }}>Сохранить</button>
                     </div>
                 </div>

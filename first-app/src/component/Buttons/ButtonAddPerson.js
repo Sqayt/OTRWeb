@@ -8,7 +8,9 @@ import {setPeople} from "../../redux/store/personSlice";
 
 function ButtonAddPerson() {
     const dispatch = useDispatch();
+
     const [show, setShow] = useState(false);
+    const [state, setState] = useState(false)
 
     useEffect(() => {
         axios
@@ -16,8 +18,11 @@ function ButtonAddPerson() {
             .then(resp => {
                 if(resp.status !== 200) {
                     console.log('Не успешное получение данных, ответ ' + resp.status + ', ошибка:');
+                    setState(false);
+
                     throw new Error();
                 }
+                setState(true);
                 let dataPerson = resp.data
 
                 console.log('Успешное получение данных');
@@ -26,15 +31,20 @@ function ButtonAddPerson() {
             .catch(e => console.log(e))
     }, [show]);
 
+
+
     return (
         <div className={'btnPosition'}>
-
-            <button className={'btn_switch'} onClick={() => setShow(true)}>
+            <button className={'btn_switch'} disabled={!state} onClick={() => setShow(true)}>
                 <h2>Добавить сотрудника</h2>
             </button>
 
             <Modal title={'Добавить сотрудника'} show={show} onType={'create'}
-                   onClose = {() => {setShow(false)}} />
+                   onClose = {() => {
+
+                       setShow(false)
+
+                   }} />
 
         </div>
     )

@@ -16,7 +16,7 @@ function TableTasks() {
     const tasks = useSelector(state => state.toolTask.todos)
 
     useEffect(() => {
-        axios
+         axios
             .get(apiUrl)
             .then(resp => {
                 if(resp.status !== 200) {
@@ -30,37 +30,44 @@ function TableTasks() {
             .catch(e => console.log(e))
     }, [show]);
 
-    return (
-        <div className={'Tables'}>
-            <table>
-                <TableTasksHead />
+    if (tasks.length !== 0) {
+        return (
+            <div className={'Tables'}>
+                <table>
+                    <TableTasksHead/>
 
-                {tasks.map((val, key) => {
-                    return (
-                        <tbody key={key}>
-                            <tr>
-                                <td id={val.id}>{val.id}</td>
-                                <td>
-                                    <label className={'hyper-word'} onClick={() => {
-                                               setId(val.id)
-                                               setShow(true)
-                                           }}>
-                                        {val.description}
-                                    </label>
-                                </td>
-                                <td>{val.fullNamePerson}</td>
-                                <td>{val.priority}</td>
-                            </tr>
-                        </tbody>
+                    {tasks.map((val, key) => {
+                            return (
+                                <tbody key={key}>
+                                <tr>
+                                    <td id={val.id}>{val.id}</td>
+                                    <td>
+                                        <label className={'hyper-word'} onClick={() => {
+                                            setId(val.id)
+                                            setShow(true)
+                                        }}>
+                                            {val.description}
+                                        </label>
+                                    </td>
+                                    <td>{val.fullNamePerson}</td>
+                                    <td>{val.priority}</td>
+                                </tr>
+                                </tbody>
+                            )
+                        }
                     )}
-                )}
-            </table>
+                </table>
 
-            <Modal title={'Редактирование - Задача №' + id} btnType={'update'}
-                   show={show} id={id} onClose = {() => setShow(false)} />
+                <Modal title={'Редактирование - Задача №' + id} btnType={'update'}
+                       show={show} id={id} onClose={() => setShow(false)}/>
 
-        </div>
-    )
+            </div>
+        )
+    } else {
+        return (
+            <h3 style={{textAlign: "center"}}>Нет соединения с сервером!</h3>
+        )
+    }
 }
 
 export default TableTasks

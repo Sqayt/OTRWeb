@@ -2,6 +2,7 @@ import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {removePerson, updatePerson} from "../../redux/store/personSlice";
+import MyAlertPerson from "./Elements/MyAlertPerson";
 
 export default (props) => {
     if (!props.show) {
@@ -81,18 +82,24 @@ export default (props) => {
                         }>Удалить</button>
 
                         <button className={'btn_add'} onClick={() => {
+                            let person = {
+                                id: props.id,
+                                post: post.current.value,
+                                name: name.current.value,
+                                surName: surName.current.value,
+                                middleName: middleName.current.value,
+                                directorFullName: director.current.value
+                            }
 
-                            dispatch(updatePerson(
-                                {
-                                        id: props.id,
-                                        post: post.current.value,
-                                        name: name.current.value,
-                                        surName: surName.current.value,
-                                        middleName: middleName.current.value,
-                                        directorFullName: director.current.value
-                                    }
-                            ));
-                            props.onClose();
+                            let myAlert = MyAlertPerson(person)
+
+                            if (!myAlert) {
+                                dispatch(updatePerson
+                                (
+                                    person
+                                ));
+                                props.onClose();
+                            }
                         }}>Сохранить</button>
                     </div>
                 </div>

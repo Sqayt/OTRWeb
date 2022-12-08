@@ -1,7 +1,7 @@
 import axios from "axios";
 import {apiUrl} from "./configPerson";
 
-export default (id, person) => {
+export default async (id, person) => {
 
     axios
         .put(apiUrl + id, person)

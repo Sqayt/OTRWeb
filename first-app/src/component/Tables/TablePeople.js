@@ -66,7 +66,7 @@ function TablePeople() {
         )
     } else {
         return (
-            <h3>Нет подключения к серверу!</h3>
+            <h3 style={{textAlign: "center"}}>Нет соединения с сервером!</h3>
         )
     }
 }

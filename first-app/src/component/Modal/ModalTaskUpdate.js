@@ -2,6 +2,7 @@ import './Modal.css'
 import {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {removeTask, updateTask} from "../../redux/store/taskSlice";
+import MyAlertPerson from "./Elements/MyAlertPerson";
 
 export default (props) => {
     if (!props.show) {
@@ -26,7 +27,7 @@ export default (props) => {
     const fullNames = useSelector(state => state.toolPerson.todos)
 
     const description = useRef(null)
-    const personFullName = useRef(null)
+    const selectValue = useRef(null)
     const priorityArr = useRef(null)
 
     return (
@@ -43,7 +44,7 @@ export default (props) => {
                     </div>
                     <div className={'modal-div'}>
                         <label className={'modal-label'}>Отвественный</label>
-                        <select id={'selectedPerson'} ref={personFullName} className={'modal-select'}>
+                        <select id={'selectedPerson'} ref={selectValue} className={'modal-select'}>
                             {fullNames.map((val) => {
                                 return (
                                     <option value={val.id}>
@@ -68,16 +69,23 @@ export default (props) => {
                             props.onClose();
                         }}>Удалить</button>
                         <button className={'btn_add'} onClick={() => {
-                            dispatch(updateTask(
-                                {
-                                        description: description.current.value,
-                                        personFullName: personFullName.current.text,
-                                        priority: priorityArr.current.value,
-                                        id: props.id,
-                                        fullNamePerson: personFullName.current.value
-                                    }
-                            ));
-                            props.onClose();
+                            let task = {
+                                description: description.current.value,
+                                personFullName: selectValue.current.text,
+                                priority: priorityArr.current.value,
+                                id: props.id,
+                                fullNamePerson: selectValue.current.value
+                            }
+
+                            let myAlert = MyAlertPerson(task)
+
+                            if (!myAlert) {
+                                dispatch(updateTask
+                                (
+                                    task
+                                ));
+                                props.onClose();
+                            }
                         }}>Сохранить</button>
                     </div>
                 </div>
