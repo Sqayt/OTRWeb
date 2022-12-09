@@ -5,6 +5,14 @@
     margin: 10px;
 }
 
+.idField {
+    width: 35px;
+}
+
+.lastField {
+    width: 140px;
+}
+
 table {
     border: 2px solid black;
     width: 100%;
@@ -25,10 +33,12 @@ tbody {
 
 th {
     text-align: center;
+    height: 50px;
 }
 
 td {
     text-align: center;
+    height: 40px;
 }
 
 .hyper-word {

@@ -25,7 +25,6 @@ function ButtonAddTask() {
                 setState(true)
                 let dataTask = resp.data
 
-                console.log('Успешное получение данных');
                 dispatch(setTasks(dataTask))
             })
             .catch(e => console.log(e))

@@ -25,7 +25,6 @@ function ButtonAddPerson() {
                 setState(true);
                 let dataPerson = resp.data
 
-                console.log('Успешное получение данных');
                 dispatch(setPeople(dataPerson))
             })
             .catch(e => console.log(e))

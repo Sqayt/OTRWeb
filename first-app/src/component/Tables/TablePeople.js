@@ -40,7 +40,7 @@ function TablePeople() {
                             return (
                                 <tbody key={key}>
                                 <tr>
-                                    <td id={val.id}>{val.id}</td>
+                                    <td id={val.id} className={'idField'}>{val.id}</td>
                                     <td>
                                         <label className={'hyper-word'} onClick={() => {
                                             setId(val.id)
@@ -51,7 +51,7 @@ function TablePeople() {
                                     </td>
                                     <td>{val.directorFullName}</td>
                                     <td>{val.branchName}</td>
-                                    <td>{val.countTask}</td>
+                                    <td className={'lastField'}>{val.countTask}</td>
                                 </tr>
                                 </tbody>
                             )

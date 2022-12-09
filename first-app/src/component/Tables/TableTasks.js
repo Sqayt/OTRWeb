@@ -40,7 +40,7 @@ function TableTasks() {
                             return (
                                 <tbody key={key}>
                                 <tr>
-                                    <td id={val.id}>{val.id}</td>
+                                    <td id={val.id} className={'idField'}>{val.id}</td>
                                     <td>
                                         <label className={'hyper-word'} onClick={() => {
                                             setId(val.id)
@@ -50,7 +50,7 @@ function TableTasks() {
                                         </label>
                                     </td>
                                     <td>{val.fullNamePerson}</td>
-                                    <td>{val.priority}</td>
+                                    <td className={'lastField'}>{val.priority}</td>
                                 </tr>
                                 </tbody>
                             )

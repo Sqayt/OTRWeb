@@ -10,6 +10,10 @@
     justify-content: center;
 }
 
+button {
+    /*padding: 5px 10px;*/
+}
+
 .modal-content {
     width: 500px;
     background-color: #fff;
@@ -76,9 +80,18 @@
 }
 
 .btn_add {
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
     margin-left: 20px;
 }
 
 .buttons_left {
     margin-left: auto;
+}
+
+.btn {
+    color: white;
+    background-color: red;
+    padding: 5px 10px;
 }

@@ -61,9 +61,9 @@ export default (props) => {
                 </div>
 
                 <div className={'modal-footer'}>
-                    <button onClick={props.onClose} className={'btn_add'}>Отмена</button>
+                    <button onClick={props.onClose} className={'btn'}>Отмена</button>
                     <div className={'buttons_left'}>
-                        <button className={'btn_add'} onClick={() => {dispatch(removeTask(
+                        <button className={'btn'} onClick={() => {dispatch(removeTask(
                                 props.id
                         ));
                             props.onClose();
